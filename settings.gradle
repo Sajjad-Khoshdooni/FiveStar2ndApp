@@ -1,0 +1,8 @@
+include ':gson-2.8.6'
+include ':mqtt-client-0.4.0 (1)'
+include ':coordinatorlayout-1.1.0'
+include ':cardview-v7-23.0.1'
+include ':recyclerview-1.1.0'
+include ':material-1.2.1'
+include ':app'
+rootProject.name = "FiveStarNewEdition"

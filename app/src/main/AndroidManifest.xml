@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.fivestarnewedition">
+
+
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_PRIVILEGED"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Permissions the Application Requires -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ADDSection.SelectIconActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Security.PasswordActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Security.SetPasswordActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Senario.SenarioThingActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Security.SetTimeArmActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Log.LogActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Drawer.SimCardOption"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Drawer.SettingPanelActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ADDSection.EditGroupActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ADDSection.AddGroupActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ADDSection.EditDeviceActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ADDSection.AddDeviceActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ADDSection.AddActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Account.EditAccountActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Account.AccountManageActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ifThen.IfThenActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Senario.SenarioActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Security.SecurityActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Main.MainActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".BlueTooth.SerialService" />
+    </application>
+
+
+</manifest>

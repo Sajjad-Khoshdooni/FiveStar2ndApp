@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7F859C</color>
+    <color name="colorPrimaryShadow">#9BA2BC</color>
+    <color name="colorPrimaryDark">#393b44</color>
+    <color name="colorAccent">#d6e0f0</color>
+    <color name="textColor">#DFE1E4</color>
+    <color name="textColorDark">#BBBEC1</color>
+    <color name="textColorRed">#7d0633</color>
+
+
+
+
+    ///////////////////////////////
+    <color name="colorRecieveText">#9BA2BC</color>
+    <color name="colorSendText">#7d0633</color>
+    <color name="colorStatusText">#BBBEC1</color>
+</resources>

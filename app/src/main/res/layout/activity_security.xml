@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Security.SecurityActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2"
+            android:background="@color/colorPrimaryShadow"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/textColor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Security"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="363dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/armbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/darm"
+                android:ellipsize="middle"
+                android:onClick="sendCode"
+                android:text="ARM"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/disarmbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/darm"
+                android:ellipsize="middle"
+                android:onClick="sendCode"
+                android:text="DISARM"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/gasvalvebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/gasvalve"
+                android:ellipsize="middle"
+                android:onClick="sendCode"
+                android:text="Gas valve"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/waterbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/watervalve"
+                android:ellipsize="middle"
+                android:onClick="sendCode"
+                android:text="Water valve"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/time_arm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/armtime"
+                android:onClick="armTime"
+                android:text="Time ARM"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/time_disarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/disarmtime"
+                android:onClick="disarmTime"
+                android:text="Time DISARM"
+                android:textColor="@color/textColor"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:title="Home" >
+            <menu>
+                <group>
+                    <item
+                        android:id="@+id/drawer_account"
+                        android:icon="@drawable/drawer_account"
+                        android:title="Manage Account"
+                        android:clickable="true"
+                        app:showAsAction="always"/>
+                    <item
+                        android:id="@+id/drawer_sim_card"
+                        android:icon="@drawable/drawer_simcard"
+                        android:title="Sim Card Option"
+                        android:clickable="true"
+                        app:showAsAction="always" />
+                </group>
+            </menu>
+        </item>
+
+        <item
+            android:title="Setting"
+            android:icon="@drawable/drawer_setting">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/drawer_add_device_group"
+                    android:title="Add Device &amp; Group"
+                    android:clickable="true"
+                    app:showAsAction="always" />
+                <item
+                    android:id="@+id/drawer_panel_setting"
+                    android:title="Panel Setting"
+                    android:clickable="true"
+                    app:showAsAction="always" />
+            </group>
+        </menu>
+
+    </item>
+    </group>
+</menu>

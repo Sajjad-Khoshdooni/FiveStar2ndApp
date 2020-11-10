@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Project exclude paths
+/cardview-v7-23.0.1/build/
+/coordinatorlayout-1.1.0/build/
+/gson-2.8.6/build/
+/material-1.2.1/build/
+/mqtt-client-0.4.0 (1)/build/
+/recyclerview-1.1.0/build/

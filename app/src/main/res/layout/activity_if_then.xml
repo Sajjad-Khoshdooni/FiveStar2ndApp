@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:id="@+id/ifthen_drawer_layout"
+    tools:context=".ifThen.IfThenActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="5"
+                android:background="@color/colorPrimaryShadow"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <TextClock
+                    android:id="@+id/ifthen_textClock"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:background="@color/colorPrimaryShadow"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="clock" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoSizeTextType="uniform"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:drawableBottom="@android:drawable/arrow_down_float"
+                    android:gravity="center"
+                    android:text="Reception Hall"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    tools:text="weather" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/musicbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="none"
+                        android:singleLine="true"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryDark"
+                        android:drawableTop="@drawable/music"
+                        android:onClick="musicIntent"
+                        android:text="Music"
+                        android:textColor="@color/textColor" />
+
+                    <Button
+                        android:id="@+id/securitybtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryDark"
+                        android:drawableTop="@drawable/security"
+                        android:onClick="securityIntent"
+                        android:ellipsize="none"
+                        android:singleLine="true"
+                        android:text="Security"
+                        android:textColor="@color/textColor" />
+
+                    <Button
+                        android:id="@+id/camerabtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="none"
+                        android:singleLine="true"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryDark"
+                        android:drawableTop="@drawable/camera"
+                        android:onClick="cameraIntent"
+                        android:text="Camera"
+                        android:textColor="@color/textColor" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="2dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/if_then_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="20dp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_weight="5"
+                        android:layout_marginStart="300dp"
+                        android:background="@drawable/plus_floating"
+                        android:gravity="center_horizontal"
+                        android:onClick="addIfThen" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:onClick="homeIntent"
+                        app:srcCompat="@drawable/home"
+                        tools:srcCompat="@drawable/home" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:onClick="senarioIntent"
+                        app:srcCompat="@drawable/logs"
+                        tools:srcCompat="@drawable/logs" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryShadow"
+                        app:srcCompat="@drawable/ifthen"
+                        tools:srcCompat="@drawable/ifthen" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:onClick="logIntent"
+                        android:scaleType="center"
+                        app:srcCompat="@drawable/menu_bar"
+                        tools:srcCompat="@drawable/menu_bar" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/if_then_activity_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/activity_main_drawer"
+        android:background="@color/textColor"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>
