@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,31 +26,41 @@ import com.example.fivestarnewedition.Main.MainActivity;
 import com.example.fivestarnewedition.R;
 import com.example.fivestarnewedition.Security.PasswordActivity;
 import com.example.fivestarnewedition.Senario.SenarioActivity;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 
 public class IfThenActivity extends AppCompatActivity {
+    private BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_if_then);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        actionBar.setIcon(null);
 
         initialize();
         init();
+
+        setUpBottomAppBar();
+
+        //click event over FAB
+        findViewById(R.id.ifthenfab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addIfThen();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initialize();
     }
 
     private void initialize() {
         RecyclerView recyclerView = findViewById(R.id.if_then_recycler);
-        IfThenAdapter adapter = new IfThenAdapter(Constant.getIfThens(IfThenActivity.this));
+        IfThenAdapter adapter = new IfThenAdapter(IfThenActivity.this, Constant.getIfThens(IfThenActivity.this));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -68,10 +77,9 @@ public class IfThenActivity extends AppCompatActivity {
         finish();
     }
 
-    public void addIfThen(View view) {
-        /**
-         * Do something
-         */
+    public void addIfThen() {
+        Intent my = new Intent(IfThenActivity.this, AddIfThenActivity.class);
+        startActivity(my);
     }
 
     public void logIntent(View view) {
@@ -137,6 +145,23 @@ public class IfThenActivity extends AppCompatActivity {
                         break;
                 }
                 return false;
+            }
+        });
+    }
+
+    private void setUpBottomAppBar() {
+        //find id
+        bottomAppBar = findViewById(R.id.ifthenbar);
+
+        //set bottom bar to Action bar as it is similar like Toolbar
+        setSupportActionBar(bottomAppBar);
+
+        //click event over Bottom bar menu item
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(IfThenActivity.this, "Notification clicked.", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
     }

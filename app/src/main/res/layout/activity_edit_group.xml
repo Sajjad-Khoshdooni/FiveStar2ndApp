@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/textColor"
+    android:background="@color/colorPrimary"
     tools:context=".ADDSection.EditGroupActivity">
 
     <LinearLayout
@@ -21,7 +21,8 @@
             android:layout_weight="4"
             android:padding="5dp"
             android:text="Edit Group"
-            android:textSize="30sp" />
+            android:textColor="#8bb9c9"
+            android:textSize="24sp" />
 
 
         <LinearLayout
@@ -42,18 +43,21 @@
                 <EditText
                     android:id="@+id/group_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="5"
-                    android:hint="Group Name" />
+                    android:hint="Group Name"
+                    android:textColor="@color/textColorBlue"
+                    android:textColorHint="@color/textColorBlue"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="5"
                     android:gravity="center_vertical"
                     android:text="GroupContent"
-                    android:textColor="#000000"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -73,6 +77,6 @@
             android:layout_weight="4"
             android:background="@color/colorPrimary"
             android:onClick="save"
-            app:srcCompat="@drawable/save" />
+            app:srcCompat="@drawable/savebtnp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

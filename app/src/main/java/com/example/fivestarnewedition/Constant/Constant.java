@@ -1,8 +1,6 @@
 package com.example.fivestarnewedition.Constant;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.admin.DnsEvent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -16,9 +14,16 @@ import com.example.fivestarnewedition.BlueTooth.BluetoothTestActivity;
 import com.example.fivestarnewedition.BlueTooth.SerialService;
 import com.example.fivestarnewedition.BuildConfig;
 import com.example.fivestarnewedition.Log.Log;
-import com.example.fivestarnewedition.MQTT.MQTT;
+import com.example.fivestarnewedition.MQTTCenter.MQTT;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,6 +33,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Constant {
     private static ControlEnum controlEnum = ControlEnum.INTERNET;
@@ -35,6 +41,7 @@ public class Constant {
     ///////Ino vel kon
     private static List<Device> groupDeice = new ArrayList<>();
     private static List<Integer> images = new ArrayList<>();
+    private static List<Device> senarioDevice = new ArrayList<Device>();
     private static int imageOnIcon;
     private static int imageOffIcon;
     private static boolean on = false;
@@ -43,7 +50,7 @@ public class Constant {
     static private SerialService serialService = null;
 
     //Internet
-    private static MQTT mqtt = null;
+    private static MQTT mainMqtt;
 
     //File Address
     private static String ACCOUNTS_PATH = "accounts.txt";
@@ -94,59 +101,139 @@ public class Constant {
         }
     }
 
-    /**
-     *
-     */
-
 
     public static void vibrate(Context context){
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.EFFECT_DOUBLE_CLICK));
         } else {
             //deprecated in API 26
             v.vibrate(500);
         }
     }
 
-    public static void sendMessage(String code,Context context) {
-        Toast.makeText(context,"Message Sent",Toast.LENGTH_SHORT).show();
-        vibrate(context);
-        if (controlEnum == ControlEnum.BLUETOOTH) sendBluetooth(code , context);
-        else publish(code);
+    public static boolean sendMessage(String code,AppCompatActivity activity) {
+        vibrate(activity);
+        Toast.makeText(activity,code,Toast.LENGTH_LONG).show();
+        if (controlEnum == ControlEnum.BLUETOOTH) sendBluetooth(code , activity);
+        else {
+            return publish(activity,code);
+        }
+        return false;
     }
 
-    public static void subscribe(Device device){
+    public static boolean sendMessagePlusTopic(String topic, String code,AppCompatActivity activity) {
+        vibrate(activity);
+        if (controlEnum == ControlEnum.BLUETOOTH) sendBluetooth(code , activity);
+        else {
+            return publish(activity,code,topic);
+        }
+        return false;
+    }
+
+    public static boolean subscribe(String code){
         try{
-            mqtt.subscribe(device);
+            mainMqtt.subscribe(code);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public static void subscribe(String code){
-        try{
-            mqtt.subscribe(code);
-        } catch (Exception e) {
+    public static boolean publish(AppCompatActivity activity, String code){
+        final boolean[] flag = {false};
+        MqttAndroidClient mqttAndroidClient = new MqttAndroidClient(activity.getApplicationContext(),
+                getMainAccount(activity).getURL(), getMainAccount(activity).getID());
+
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setAutomaticReconnect(true);
+        mqttConnectOptions.setCleanSession(false);
+
+        try {
+            MqttAndroidClient finalMqttAndroidClient = mqttAndroidClient;
+            mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    try {
+                        IMqttToken token = finalMqttAndroidClient.publish(
+                                getMainAccount(activity).getIMEI()+"/topic",
+                                new MqttMessage(code.getBytes()));
+                        token.setActionCallback(new IMqttActionListener() {
+                            @Override
+                            public void onSuccess(IMqttToken iMqttToken) {
+                                flag[0] = true;
+                                Constant.vibrate(activity);
+                            }
+
+                            @Override
+                            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+                                flag[0] = false;
+                            }
+                        });
+
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                }
+            });
+
+        } catch (MqttException e) {
             e.printStackTrace();
         }
+        return flag[0];
     }
 
-    public static void publish(Device device){
-        try{
-            mqtt.publish(device);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    public static boolean publish(AppCompatActivity activity, String code, String topic){
+        final boolean[] flag = {false};
+        MqttAndroidClient mqttAndroidClient = new MqttAndroidClient(activity.getApplicationContext(),
+                getMainAccount(activity).getURL(), getMainAccount(activity).getID());
 
-    public static void publish(String code){
-        try{
-            mqtt.publish(code);
-        } catch (Exception e) {
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setAutomaticReconnect(true);
+        mqttConnectOptions.setCleanSession(false);
+
+        try {
+            MqttAndroidClient finalMqttAndroidClient = mqttAndroidClient;
+            mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    try {
+                        IMqttToken token = finalMqttAndroidClient.publish(
+                                getMainAccount(activity).getIMEI()+"/"+topic,
+                                new MqttMessage(code.getBytes()));
+                        token.setActionCallback(new IMqttActionListener() {
+                            @Override
+                            public void onSuccess(IMqttToken iMqttToken) {
+                                flag[0] = true;
+                                Constant.vibrate(activity);
+                            }
+
+                            @Override
+                            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+                                flag[0] = false;
+                            }
+                        });
+
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                }
+            });
+
+        } catch (MqttException e) {
             e.printStackTrace();
         }
+        return flag[0];
     }
 
     private static void sendBluetooth(String message,Context context){
@@ -176,7 +263,7 @@ public class Constant {
         return new ArrayList<>();
     }
 
-    private static void writeAccounts(AppCompatActivity activity,List<Account> accounts){
+    public static void writeAccounts(AppCompatActivity activity,List<Account> accounts){
         writeFileInPath(activity,ACCOUNTS_PATH,new Gson().toJson(accounts));
     }
 
@@ -188,7 +275,7 @@ public class Constant {
         return new ArrayList<>();
     }
 
-    private static void writeDevices(AppCompatActivity activity,List<Device> devices){
+    public static void writeDevices(AppCompatActivity activity,List<Device> devices){
         writeFileInPath(activity,DEVICE_PATH,new Gson().toJson(devices));
     }
 
@@ -205,42 +292,39 @@ public class Constant {
     }
 
     private static List<Senario> readSenario(AppCompatActivity activity){
-        /**
-         * Do something
-         */
+        if (new Gson().fromJson(readFileInPath(activity,SENARIO_PATH), new TypeToken<List<Senario>>(){}.getType()) != null) {
+            return new Gson().fromJson(readFileInPath(activity, SENARIO_PATH), new TypeToken<List<Senario>>() {
+            }.getType());
+        }
         return new ArrayList<>();
     }
 
     private static void writeSenario(AppCompatActivity activity,List<Senario> senarios){
-        /**
-         * Do something
-         */
+        writeFileInPath(activity,SENARIO_PATH,new Gson().toJson(senarios));
     }
 
     private static List<IfThen> readIfThen(AppCompatActivity activity){
-        /**
-         * Do something
-         */
+        if (new Gson().fromJson(readFileInPath(activity,IF_THEN_PATH), new TypeToken<List<IfThen>>(){}.getType()) != null) {
+            return new Gson().fromJson(readFileInPath(activity, IF_THEN_PATH), new TypeToken<List<IfThen>>() {
+            }.getType());
+        }
         return new ArrayList<>();
     }
 
-    private static void writeIfThen(AppCompatActivity activity,List<IfThen> ifThens){
-        /**
-         * Do something
-         */
+    public static void writeIfThen(AppCompatActivity activity,List<IfThen> ifThens){
+        writeFileInPath(activity,IF_THEN_PATH,new Gson().toJson(ifThens));
     }
 
     private static List<Group> readGroup(AppCompatActivity activity){
-        /**
-         * Do something
-         */
+        if (new Gson().fromJson(readFileInPath(activity,GROUP_PATH), new TypeToken<List<Group>>(){}.getType()) != null) {
+            return new Gson().fromJson(readFileInPath(activity, GROUP_PATH), new TypeToken<List<Group>>() {
+            }.getType());
+        }
         return new ArrayList<>();
     }
 
     private static void writeGroup(AppCompatActivity activity,List<Group> group){
-        /**
-         * Do something
-         */
+        writeFileInPath(activity,GROUP_PATH,new Gson().toJson(group));
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,6 +365,7 @@ public class Constant {
     }
 
     public static void addAccount(AppCompatActivity activity ,Account account) {
+        account.setMain(true);
         List<Account> accounts = new ArrayList<>();
         try{
             accounts = readAccounts(activity);
@@ -289,8 +374,12 @@ public class Constant {
         }
         if (accounts == null)
             accounts = new ArrayList<>();
+        for (Account ac:accounts){
+            ac.setMain(false);
+        }
         accounts.add(account);
         writeAccounts(activity,accounts);
+        setMainAccount(activity,account);
     }
 
     public static List<Account> getAccounts(AppCompatActivity activity) {
@@ -348,9 +437,15 @@ public class Constant {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (devices == null)
+        if (devices == null){
             devices = new ArrayList<>();
-        devices.remove(device);
+            return;
+        }
+        for (Device dev:devices){
+            if (device.getName().equals(dev.getName())){
+                devices.remove(dev);
+            }
+        }
         writeDevices(activity,devices);
     }
 
@@ -540,11 +635,23 @@ public class Constant {
     }
 
     public static Account getMainAccount(AppCompatActivity activity){
-        return new Gson().fromJson(readFileInPath(activity,MAIN_ACCOUNT_PATH), Account.class);
+        for (Account ac:getAccounts(activity)){
+            if (ac.isMain()){
+                return ac;
+            }
+        }
+        return getAccounts(activity).get(0);
     }
 
     public static void setMainAccount(AppCompatActivity activity ,Account mainAccount) {
-        writeFileInPath(activity,MAIN_ACCOUNT_PATH,new Gson().toJson(mainAccount));
+        List<Account> acc = getAccounts(activity);
+        for (Account ac:acc){
+            ac.setMain(false);
+            if (ac.getName().equals(mainAccount.getName())){
+                ac.setMain(true);
+            }
+        }
+        writeAccounts(activity,acc);
     }
 
     /////////////////////////////////////////////////
@@ -604,11 +711,27 @@ public class Constant {
         on = onn;
     }
 
-    public static MQTT getMqtt() {
-        return mqtt;
+    public static MQTT getMainMqtt() {
+        return mainMqtt;
     }
 
-    public static void setMqtt(MQTT mqtt) {
-        Constant.mqtt = mqtt;
+    public static void setMainMqtt(MQTT mainMqtt) {
+        Constant.mainMqtt = mainMqtt;
+    }
+
+    public static void removeSenarioDevice(Device device) {
+        senarioDevice.remove(device);
+    }
+
+    public static void clearSenarioDevice() {
+        senarioDevice = new ArrayList<Device>();
+    }
+
+    public static void addSenarioDevice(Device device) {
+        senarioDevice.add(device);
+    }
+
+    public static List<Device> getSenarioDevice() {
+        return senarioDevice;
     }
 }

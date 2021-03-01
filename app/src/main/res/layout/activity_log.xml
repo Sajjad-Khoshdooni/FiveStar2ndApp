@@ -22,6 +22,11 @@
             android:textColor="@color/textColor"
             android:textSize="30sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/textColor"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/log_recycler"
             android:layout_width="match_parent"
@@ -38,6 +43,7 @@
             android:layout_weight="3"
             android:background="@drawable/button_capsule"
             android:onClick="clearLog"
-            android:text="Clear" />
+            android:text="Clear"
+            android:textColor="@color/textColor" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

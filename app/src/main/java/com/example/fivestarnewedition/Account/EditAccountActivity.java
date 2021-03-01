@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fivestarnewedition.Constant.Account;
 import com.example.fivestarnewedition.Constant.Constant;
+import com.example.fivestarnewedition.MQTTCenter.MQTT;
 import com.example.fivestarnewedition.R;
 
 public class EditAccountActivity extends AppCompatActivity {
@@ -58,8 +59,11 @@ public class EditAccountActivity extends AppCompatActivity {
                         imei.requestFocus();
                         return;
                     }
-                    Constant.addAccount(EditAccountActivity.this ,new Account(name.getText().toString(), address.getText().toString(),
-                            id.getText().toString(), imei.getText().toString()));
+                    Account account = new Account(name.getText().toString(), address.getText().toString(),
+                            id.getText().toString(), imei.getText().toString());
+                    Constant.addAccount(EditAccountActivity.this ,account);
+                    Constant.setMainMqtt(new MQTT(EditAccountActivity.this,account));
+                    Toast.makeText(getApplicationContext(),Constant.getMainMqtt().isConnected()?"Connected":"Disconnected",Toast.LENGTH_LONG).show();
                     finish();
                 }
             });

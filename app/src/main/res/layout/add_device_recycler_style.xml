@@ -9,41 +9,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/button_capsule"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/add_device_recycler_image"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            tools:srcCompat="@drawable/disarmtime" />
-
-        <TextView
-            android:id="@+id/add_device_recycler_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:text="Name"
-            android:textColor="@color/textColor"
-            android:textSize="20sp" />
+            android:background="@drawable/button_capsule"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/add_device_recycler_delete"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/deletebin" />
+            <ImageButton
+                android:id="@+id/add_device_recycler_image"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                tools:srcCompat="@drawable/timedisarm" />
 
-        <ImageButton
-            android:id="@+id/add_device_recycler_edit"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/edit" />
+            <TextView
+                android:id="@+id/add_device_recycler_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:text="Name"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/add_device_recycler_delete"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@color/colorPrimary"
+                app:srcCompat="@drawable/deletebin" />
+
+            <ImageButton
+                android:id="@+id/add_device_recycler_edit"
+                android:layout_width="360dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:background="@color/colorPrimary"
+                app:srcCompat="@drawable/edit" />
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lineColor" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

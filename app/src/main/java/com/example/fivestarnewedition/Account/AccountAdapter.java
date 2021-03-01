@@ -43,8 +43,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.ViewHold
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Constant.removeAccount(activity,account);
-                accounts = Constant.getAccounts(activity);
+                accounts.remove(account);
+                Constant.writeAccounts(activity,accounts);
                 AccountAdapter.this.notifyDataSetChanged();
             }
         });

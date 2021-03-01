@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,10 +25,12 @@ import com.example.fivestarnewedition.Main.MainActivity;
 import com.example.fivestarnewedition.R;
 import com.example.fivestarnewedition.Security.PasswordActivity;
 import com.example.fivestarnewedition.ifThen.IfThenActivity;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 
 
 public class SenarioActivity extends AppCompatActivity {
+    private BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +38,29 @@ public class SenarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_senario);
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        actionBar.setIcon(null);
-
-
         initializeRecycler();
         init();
+
+        setUpBottomAppBar();
+
+        //click event over FAB
+        findViewById(R.id.senariofab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addSenario();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initializeRecycler();
     }
 
     private void initializeRecycler() {
         RecyclerView recyclerView = findViewById(R.id.senario_recycler);
-        RecyclerAdapter myAdapter = new RecyclerAdapter(getApplicationContext(), Constant.getSenarios(SenarioActivity.this));
+        RecyclerAdapter myAdapter = new RecyclerAdapter(SenarioActivity.this, Constant.getSenarios(SenarioActivity.this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myAdapter);
 
@@ -68,9 +78,9 @@ public class SenarioActivity extends AppCompatActivity {
         finish();
     }
 
-    public void addSenario(View view) {
-//        Intent my = new Intent(SenarioActivity.this,  AddSenarioActivity.class);
-//        startActivity(my);
+    public void addSenario() {
+        Intent my = new Intent(SenarioActivity.this,  AddSenarioActivity.class);
+        startActivity(my);
     }
 
     public void logIntent(View view) {
@@ -98,7 +108,6 @@ public class SenarioActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.INTENT_ACTION_MUSIC_PLAYER);
         startActivity(intent);
     }
-
 
     private void init(){
 
@@ -137,6 +146,26 @@ public class SenarioActivity extends AppCompatActivity {
                         break;
                 }
                 return false;
+            }
+        });
+    }
+
+    /**
+     * set up Bottom Bar
+     */
+    private void setUpBottomAppBar() {
+        //find id
+        bottomAppBar = findViewById(R.id.senariobar);
+
+        //set bottom bar to Action bar as it is similar like Toolbar
+        setSupportActionBar(bottomAppBar);
+
+        //click event over Bottom bar menu item
+        bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(SenarioActivity.this, "Notification clicked.", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
     }

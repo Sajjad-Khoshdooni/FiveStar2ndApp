@@ -106,7 +106,7 @@ public class EditDeviceActivity extends AppCompatActivity {
     private void initialize(Integer position) {
         this.device = Constant.getDevices(EditDeviceActivity.this ,position);
         name.setText(device.getName());
-        delay.setText(device.getDelay());
+        delay.setText(String.valueOf(device.getDelay()));
         typePopup.setText(device.getDeviceType().toString().toLowerCase());
         zonePopup.setText(device.getZone().toLowerCase());
         notifySwitch.setChecked(device.getNotify());
@@ -132,10 +132,27 @@ public class EditDeviceActivity extends AppCompatActivity {
                         Constant.getImageOnIcon(), Constant.getImageOffIcon(), getStringCode()));
                 return;
             } else {
+                if (zonePopup.getText().toString().equals("Zone Popup")){
+                    Toast.makeText(getApplicationContext(), "Choose Zone", Toast.LENGTH_SHORT).show();
+                    zonePopup.requestFocus();
+                    return;
+                }
+                if (typePopup.getText().toString().equals("Device Type popup")){
+                    Toast.makeText(getApplicationContext(), "Choose Device Type", Toast.LENGTH_SHORT).show();
+                    typePopup.requestFocus();
+                    return;
+                }
                 if (name.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Name is Empty!!!", Toast.LENGTH_SHORT).show();
                     name.requestFocus();
                     return;
+                }
+                for (Device device:Constant.getDevices(EditDeviceActivity.this)){
+                    if (name.getText().toString().equals(device.getName())){
+                        Toast.makeText(getApplicationContext(), "Change name", Toast.LENGTH_SHORT).show();
+                        name.requestFocus();
+                        return;
+                    }
                 }
                 Constant.addDevice(EditDeviceActivity.this ,new Device(zonePopup.getText().toString(), name.getText().toString(),
                         typePopup.getText().toString(), Integer.valueOf(delay.getText().toString()), Boolean.valueOf(notifySwitch.isChecked()),

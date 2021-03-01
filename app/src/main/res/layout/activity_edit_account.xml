@@ -21,8 +21,15 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:text="Edit Account"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColorBlueLight"
             android:textSize="30sp" />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lineColor"/>
 
 
         <LinearLayout
@@ -39,7 +46,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:hint="Account Name"
-                android:textColor="@color/textColorDark"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColorDark"
                 android:textSize="20sp" />
 
             <EditText
@@ -48,8 +56,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                android:hint="Tcp://192.168.1.50:1883"
-                android:textColor="@color/textColorDark"
+                android:hint="tcp://192.168.1.50:1883"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColorDark"
                 android:textSize="20sp" />
 
             <EditText
@@ -59,7 +68,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
                 android:hint="Unique client ID"
-                android:textColor="@color/textColorDark"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColorDark"
                 android:textSize="20sp" />
 
             <EditText
@@ -68,7 +78,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:hint="IMEI"
-                android:textColor="@color/textColorDark"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColorDark"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -80,6 +91,6 @@
             android:layout_gravity="center"
             android:layout_weight="4"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/save" />
+            app:srcCompat="@drawable/savebtnp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

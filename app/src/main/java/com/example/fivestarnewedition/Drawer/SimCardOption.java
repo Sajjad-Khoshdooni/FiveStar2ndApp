@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fivestarnewedition.Constant.Constant;
-import com.example.fivestarnewedition.MQTT.MQTT;
 import com.example.fivestarnewedition.R;
 
 
@@ -24,7 +23,7 @@ public class SimCardOption extends AppCompatActivity {
 
         anten = findViewById(R.id.anten_power);
         charge = findViewById(R.id.charge_code);
-        MQTT.getInstance(SimCardOption.this).subscribe(Constant.getMainAccount(SimCardOption.this).getIMEI() + "/Ant1");
+        Constant.getMainMqtt().subscribe(Constant.getMainAccount(SimCardOption.this).getIMEI() + "/Ant1");
     }
 
     public void recharge(View view) {
@@ -33,7 +32,7 @@ public class SimCardOption extends AppCompatActivity {
             charge.requestFocus();
             return;
         }
-        Constant.sendMessage(charge.getText().toString(),getApplicationContext());
+        Constant.sendMessage(charge.getText().toString(),SimCardOption.this);
     }
 
     public void balance(View view) {

@@ -5,6 +5,7 @@ public class Account {
     private String address;
     private String ID;
     private String IMEI;
+    private boolean isMain = false;
 
     public Account(String name, String address, String ID, String IMEI) {
         this.name = name;
@@ -43,5 +44,17 @@ public class Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getURL(){
+        return address;
+    }
+
+    public boolean isMain() {
+        return isMain;
+    }
+
+    public void setMain(boolean main) {
+        isMain = main;
     }
 }

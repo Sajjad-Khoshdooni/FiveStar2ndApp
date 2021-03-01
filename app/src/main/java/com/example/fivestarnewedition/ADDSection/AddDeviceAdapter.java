@@ -58,7 +58,8 @@ public class AddDeviceAdapter extends RecyclerView.Adapter<AddDeviceAdapter.View
                 new AlertDialog.Builder(activity).setTitle("Delete entry").setMessage("Are you sure you want to delete this entry?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Constant.removeDevice(activity ,device);
+                                devices.remove(device);
+                                Constant.writeDevices(activity,devices);
                                 notifyDataSetChanged();
                             }
                         }).setNegativeButton(android.R.string.no, null)

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fivestarnewedition.BlueTooth.BluetoothTestActivity;
 import com.example.fivestarnewedition.Constant.Constant;
 import com.example.fivestarnewedition.Constant.ControlEnum;
-import com.example.fivestarnewedition.MQTT.MQTT;
+import com.example.fivestarnewedition.MQTTCenter.MQTT;
 import com.example.fivestarnewedition.R;
 import com.example.fivestarnewedition.Security.SetPasswordActivity;
 
@@ -50,11 +50,7 @@ public class SettingPanelActivity extends AppCompatActivity {
                 setMessage("Chosse connection type")
                 .setPositiveButton("Internet", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        MQTT mqtt = MQTT.getInstance(SettingPanelActivity.this);
-                        mqtt.connect(Constant.getMainAccount(SettingPanelActivity.this).getAddress(),
-                                Constant.getMainAccount(SettingPanelActivity.this).getID());
-                        Constant.setControlEnum(ControlEnum.INTERNET);
-                        Constant.setMqtt(mqtt);
+                        Constant.setMainMqtt(new MQTT(SettingPanelActivity.this,Constant.getMainAccount(SettingPanelActivity.this)));
                     }
                 }).setNegativeButton("Bluetooth", new DialogInterface.OnClickListener() {
             @Override

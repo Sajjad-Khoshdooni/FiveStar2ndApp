@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,18 +38,19 @@ public class MainActivityRecyclerAdapter extends RecyclerView.Adapter<MainActivi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Device device = devices.get(position);
         holder.name.setText(device.getName());
-        if (Constant.isDeviceOn(device)) {
-            holder.image.setImageResource(device.getOnIcon());
-        }else {
-            holder.image.setImageResource(device.getOffIcon());
-        }
+        holder.image.setImageResource(device.getOffIcon());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Constant.sendMessage(device.getSendCode(),appCompatActivity);
+                boolean b = Constant.sendMessage(device.getSendCode(),appCompatActivity);
+                if (b == true){
+                    holder.image.setImageResource(device.getOnIcon());
+                    Constant.vibrate(appCompatActivity);
+                }
             }
         });
+
     }
 
     @Override

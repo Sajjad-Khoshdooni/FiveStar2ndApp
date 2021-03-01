@@ -15,9 +15,13 @@
             <option value="$PROJECT_DIR$/cardview-v7-23.0.1" />
             <option value="$PROJECT_DIR$/coordinatorlayout-1.1.0" />
             <option value="$PROJECT_DIR$/gson-2.8.6" />
+            <option value="$PROJECT_DIR$/localbroadcastmanager-1.0.0-alpha3" />
             <option value="$PROJECT_DIR$/material-1.2.1" />
-            <option value="$PROJECT_DIR$/mqtt-client-0.4.0 (1)" />
+            <option value="$PROJECT_DIR$/material-1.3.0-alpha03" />
+            <option value="$PROJECT_DIR$/org.eclipse.paho.android.service-1.0.2" />
+            <option value="$PROJECT_DIR$/org.eclipse.paho.client.mqttv3-1.2.5" />
             <option value="$PROJECT_DIR$/recyclerview-1.1.0" />
+            <option value="$PROJECT_DIR$/support-v4-28.0.0" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

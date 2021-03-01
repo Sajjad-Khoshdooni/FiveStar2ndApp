@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/textColor"
+    android:background="@color/colorPrimary"
     tools:context=".ADDSection.EditDeviceActivity">
 
     <LinearLayout
@@ -22,6 +22,7 @@
             android:autoSizeTextType="uniform"
             android:padding="5dp"
             android:text="Edit Device"
+            android:textColor="@color/textColorBlueLight"
             android:textSize="30sp" />
 
 
@@ -43,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Device:"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
 
                 <Button
@@ -50,7 +52,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Zone Popup" />
+                    android:background="@drawable/button_capsule"
+                    android:text="Zone Popup"
+                    android:textColor="@color/textColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -64,7 +68,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Name" />
+                    android:hint="Name"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColorDark" />
             </LinearLayout>
 
             <LinearLayout
@@ -79,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Device Type:"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
 
                 <Button
@@ -87,7 +94,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:text="Device Type popup" />
+                    android:background="@drawable/button_capsule"
+                    android:text="Device Type popup"
+                    android:textColor="@color/textColor" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -95,6 +104,7 @@
                     android:layout_marginStart="100dp"
                     android:layout_weight="1"
                     android:text="Delay:"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
 
                 <EditText
@@ -105,7 +115,9 @@
                     android:ems="10"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:text="0" />
+                    android:text="0"
+                    android:textColor="@color/textColorDark"
+                    android:textColorHint="@color/textColorDark" />
             </LinearLayout>
 
             <LinearLayout
@@ -121,6 +133,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Notify on incoming message"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp" />
 
                 <Switch
@@ -143,8 +156,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginEnd="40dp"
-                    android:autoSizeTextType="uniform"
                     android:layout_weight="1"
+                    android:autoSizeTextType="uniform"
                     android:drawableStart="@drawable/on"
                     android:onClick="onIcon"
                     android:text="On Icon" />
@@ -167,10 +180,11 @@
             android:id="@+id/account_save_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
             android:layout_gravity="center"
             android:layout_weight="4"
-            android:background="@color/colorPrimary"
             android:onClick="save"
-            app:srcCompat="@drawable/save" />
+            app:srcCompat="@drawable/savebtnp"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

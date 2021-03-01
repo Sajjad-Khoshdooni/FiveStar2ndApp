@@ -19,11 +19,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
+            android:autoSizeTextType="uniform"
             android:padding="5dp"
             android:text="Add Device"
-            android:autoSizeTextType="uniform"
-            android:textColor="@color/textColor"
+            android:textColor="@color/textColorBlueLight"
             android:textSize="30sp" />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lineColor"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -40,6 +47,10 @@
             android:layout_weight="4"
             android:background="@color/colorPrimary"
             android:onClick="addDevices"
-            app:srcCompat="@drawable/plus_floating" />
+            android:scaleType="fitCenter"
+            android:maxWidth="54dp"
+            android:maxHeight="54dp"
+            app:srcCompat="@drawable/addbtn" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

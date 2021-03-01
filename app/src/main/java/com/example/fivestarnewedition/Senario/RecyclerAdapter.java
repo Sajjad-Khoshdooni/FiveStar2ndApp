@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -23,9 +25,9 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private List<Senario> senarios;
-    private Context context;
+    private AppCompatActivity context;
 
-    public RecyclerAdapter(Context context, List<Senario> senarios){
+    public RecyclerAdapter(AppCompatActivity context, List<Senario> senarios){
         this.context = context;
         this.senarios = senarios;
     }
@@ -66,7 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        EditText name;
+        TextView name;
         ImageView icon;
         Button btn;
 

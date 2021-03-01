@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="2dp">
 
     <LinearLayout
@@ -20,6 +20,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="IF"
+            android:textColor="@color/textColor"
             android:textSize="20sp" />
 
         <ImageButton
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimaryShadow"
-            app:srcCompat="@drawable/plus_floating" />
+            app:srcCompat="@drawable/addbtn" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,6 +36,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="AND"
+            android:textColor="@color/textColor"
             android:textSize="20sp" />
 
         <ImageButton
@@ -42,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimaryShadow"
-            app:srcCompat="@drawable/plus_floating" />
+            app:srcCompat="@drawable/addbtn" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,6 +52,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="THEN"
+            android:textColor="@color/textColor"
             android:textSize="20sp" />
 
         <ImageButton
@@ -57,23 +60,27 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimaryShadow"
-            app:srcCompat="@drawable/plus_floating" />
+            app:srcCompat="@drawable/addbtn" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/colorPrimaryShadow"
-            android:drawableEnd="@drawable/disarmtime"
+            android:drawableEnd="@drawable/timedisarm"
+            android:gravity="center"
             android:text="ON"
             android:textColor="@color/textColor" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/colorPrimaryShadow"
-            android:drawableEnd="@drawable/armtime"
+            android:drawableEnd="@drawable/timearm"
+            android:gravity="center"
             android:text="OFF"
             android:textColor="@color/textColor" />
 
@@ -81,6 +88,7 @@
             android:id="@+id/ifthen_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,169 +8,207 @@
     android:background="@color/colorPrimary"
     tools:context=".Main.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="5dp"
-            tools:layout_editor_absoluteX="5dp"
-            tools:layout_editor_absoluteY="5dp">
+            android:background="@color/colorPrimaryDark">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_weight="5"
-                android:background="@color/colorPrimaryShadow"
-                android:orientation="horizontal"
-                android:padding="2dp">
+                android:orientation="vertical"
+                android:padding="5dp"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="5dp"
+                android:layout_marginBottom="?attr/actionBarSize">
 
-                <TextClock
-                    android:id="@+id/main_textClock"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="5"
                     android:background="@color/colorPrimaryShadow"
-                    android:autoSizeTextType="uniform"
-                    android:text="clock"
-                    android:textColor="@color/textColor"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="2dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:autoSizeTextType="uniform"
-                    android:layout_weight="1"
-                    android:drawableBottom="@android:drawable/arrow_down_float"
-                    android:gravity="center"
-                    android:text="Reception Hall"
-                    android:textColor="@color/textColor"
-                    android:textSize="20sp" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/weather_show"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/musicbtn"
+                    <TextClock
+                        android:id="@+id/main_textClock"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryDark"
-                        android:drawableTop="@drawable/music"
-                        android:ellipsize="none"
-                        android:singleLine="true"
-                        android:onClick="musicIntent"
-                        android:text="Music"
-                        android:textColor="@color/textColor" />
-
-                    <Button
-                        android:id="@+id/securitybtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryDark"
-                        android:ellipsize="none"
-                        android:singleLine="true"
-                        android:drawableTop="@drawable/security"
-                        android:onClick="securityIntent"
-                        android:text="Security"
-                        android:textColor="@color/textColor" />
-
-                    <Button
-                        android:id="@+id/camerabtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ellipsize="none"
-                        android:singleLine="true"
-                        android:background="@color/colorPrimaryDark"
-                        android:drawableTop="@drawable/camera"
-                        android:onClick="cameraIntent"
-                        android:text="Camera"
-                        android:textColor="@color/textColor" />
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/main_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/colorPrimaryShadow"
-                        app:srcCompat="@drawable/home"
-                        tools:srcCompat="@drawable/home" />
+                        android:autoSizeTextType="uniform"
+                        android:text="clock"
+                        android:textColor="@color/textColor"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                    <ImageButton
-                        android:id="@+id/logsbtn"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:autoSizeTextType="uniform"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:onClick="senarioIntent"
-                        app:srcCompat="@drawable/logs"
-                        tools:srcCompat="@drawable/logs" />
+                        android:drawableBottom="@drawable/polygon"
+                        android:gravity="center"
+                        android:text="Reception Hall"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
 
-                    <ImageButton
-                        android:id="@+id/ifthenbtn"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:autoSizeTextType="uniform"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:onClick="ifThenIntent"
-                        app:srcCompat="@drawable/ifthen"
-                        tools:srcCompat="@drawable/ifthen" />
-
-                    <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:onClick="logIntent"
-                        android:scaleType="center"
-                        app:srcCompat="@drawable/menu_bar"
-                        tools:srcCompat="@drawable/menu_bar" />
+                        android:gravity="center"
+                        android:text="Sunny"
+                        android:textColor="@color/textColor"
+                        android:textSize="20sp" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/musicbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:drawableTop="@drawable/music"
+                            android:ellipsize="none"
+                            android:singleLine="true"
+                            android:onClick="musicIntent"
+                            android:text="Music"
+                            android:textColor="@color/textColor" />
+
+                        <Button
+                            android:id="@+id/securitybtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryDark"
+                            android:ellipsize="none"
+                            android:singleLine="true"
+                            android:drawableTop="@drawable/security"
+                            android:onClick="securityIntent"
+                            android:text="Security"
+                            android:textColor="@color/textColor" />
+
+                        <Button
+                            android:id="@+id/camerabtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="none"
+                            android:singleLine="true"
+                            android:background="@color/colorPrimaryDark"
+                            android:drawableTop="@drawable/camera"
+                            android:onClick="cameraIntent"
+                            android:text="Camera"
+                            android:textColor="@color/textColor" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/main_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimaryShadow"
+                            app:srcCompat="@drawable/home"
+                            tools:srcCompat="@drawable/home" />
+
+                        <ImageButton
+                            android:id="@+id/logsbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:onClick="senarioIntent"
+                            app:srcCompat="@drawable/senario"
+                            tools:srcCompat="@drawable/senario" />
+
+                        <ImageButton
+                            android:id="@+id/ifthenbtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:onClick="ifThenIntent"
+                            app:srcCompat="@drawable/ifthen"
+                            tools:srcCompat="@drawable/ifthen" />
+
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:onClick="logIntent"
+                            android:scaleType="center"
+                            app:srcCompat="@drawable/log"
+                            tools:srcCompat="@drawable/log" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Bottom bar -->
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/mainbar"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/colorPrimary" />
+
+        <!-- Floating Action button -->
+        <ImageButton
+            android:id="@+id/mainfab"
+            app:layout_anchor="@id/mainbar"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            app:layout_anchorGravity="center"
+            android:scaleType="fitXY"
+            android:background="@color/colorPrimary"
+            app:srcCompat="@drawable/addbtn"/>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 
     <com.google.android.material.navigation.NavigationView

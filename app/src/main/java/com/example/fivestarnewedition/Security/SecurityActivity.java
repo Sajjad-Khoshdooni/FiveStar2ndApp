@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fivestarnewedition.Constant.Constant;
-import com.example.fivestarnewedition.MQTT.MQTTMessageCenter;
 import com.example.fivestarnewedition.R;
 
 
@@ -31,12 +31,12 @@ public class SecurityActivity extends AppCompatActivity {
     }
 
     private void updateIcon() {
-        Constant.subscribe("Secur");
-        if (MQTTMessageCenter.getSecur().equals("SAL#")){
-            armSet();
-        }else if (MQTTMessageCenter.getSecur().equals("SDL#")){
-            disarmSet();
-        }
+//        Constant.subscribe("Secur");
+//        if (MQTTMessageCenter.getSecur().equals("SAL#")){
+//            armSet();
+//        }else if (MQTTMessageCenter.getSecur().equals("SDL#")){
+//            disarmSet();
+//        }
     }
 
     private void initialize() {
@@ -44,7 +44,7 @@ public class SecurityActivity extends AppCompatActivity {
         arm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Constant.sendMessage("SAL#",getApplicationContext());
+                Constant.sendMessagePlusTopic("Secur","SAL#",SecurityActivity.this);
             }
         });
 
@@ -52,34 +52,38 @@ public class SecurityActivity extends AppCompatActivity {
         disarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Constant.sendMessage("SDL#",getApplicationContext());
+                Constant.sendMessagePlusTopic("Secur","SDL#",SecurityActivity.this);
             }
         });
     }
 
     public void armTime(View view) {
-        Intent my = new Intent(SecurityActivity.this, SetTimeArmActivity.class);
-        my.putExtra("type","arm");
-        startActivity(my);
+//        Intent my = new Intent(SecurityActivity.this, SetTimeArmActivity.class);
+//        my.putExtra("type","arm");
+//        startActivity(my);
     }
 
     public void disarmTime(View view) {
-        Intent my = new Intent(SecurityActivity.this, SetTimeArmActivity.class);
-        my.putExtra("type","disarm");
-        startActivity(my);
+//        Intent my = new Intent(SecurityActivity.this, SetTimeArmActivity.class);
+//        my.putExtra("type","disarm");
+//        startActivity(my);
     }
 
     public void sendCode(View view) {
         try {
             switch (view.getId()) {
                 case R.id.armbtn:
-                    Constant.sendMessage("SAL#", getApplicationContext());
+                    Constant.sendMessage("SAL#", SecurityActivity.this);
+                    Boolean b = Constant.subscribe(Constant.getMainAccount(SecurityActivity.this).getIMEI()+ "/Secur");
+                    Toast.makeText(getApplicationContext(),b.toString() ,Toast.LENGTH_SHORT).show();
                     updateIcon();
                     Thread.sleep(1000);
                     updateIcon();
                     return;
                 case R.id.disarmbtn:
-                    Constant.sendMessage("SDL#", getApplicationContext());
+                    Constant.sendMessage("SDL#", SecurityActivity.this);
+                    Boolean bb = Constant.subscribe(Constant.getMainAccount(SecurityActivity.this).getIMEI() + "/Secur");
+                    Toast.makeText(getApplicationContext(),bb.toString() ,Toast.LENGTH_SHORT).show();
                     updateIcon();
                     Thread.sleep(1000);
                     updateIcon();
@@ -97,12 +101,12 @@ public class SecurityActivity extends AppCompatActivity {
     }
 
     private void armSet(){
-        arm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.arm,0,0);
-        disarm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.darm,0,0);
+//        arm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.arm,0,0);
+//        disarm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.darm,0,0);
     }
 
     private void disarmSet(){
-        disarm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.disarm,0,0);
-        arm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.darm,0,0);
+//        disarm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.disarm,0,0);
+//        arm.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.darm,0,0);
     }
 }

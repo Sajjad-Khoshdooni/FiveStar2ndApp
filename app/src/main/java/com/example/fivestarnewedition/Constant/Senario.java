@@ -8,9 +8,10 @@ public class Senario {
     private int image;
     private List<Device> devices = new ArrayList<>();
 
-    public Senario(String name, int image) {
+    public Senario(String name, int image, List<Device> devices) {
         this.name = name;
         this.image = image;
+        this.devices = devices;
     }
 
     public void addDevice(Device device){

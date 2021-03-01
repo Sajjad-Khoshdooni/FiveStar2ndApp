@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_margin="5dp"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="5dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,16 +45,16 @@
             android:id="@+id/account_recycler_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="clip_vertical"
+            android:layout_gravity="center|clip_vertical"
             android:layout_weight="2"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/deletebin" />
+            app:srcCompat="@drawable/delete" />
 
         <ImageButton
             android:id="@+id/account_recycler_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="clip_vertical"
+            android:layout_gravity="center|clip_vertical"
             android:layout_weight="2"
             android:background="@color/colorPrimary"
             app:srcCompat="@drawable/edit" />
